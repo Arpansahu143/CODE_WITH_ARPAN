@@ -2,7 +2,7 @@
 
 <!-- Project Title -->
 <p align="center">
-  <img src="[https://your-project-logo-url.com](https://images.app.goo.gl/SjrCjuQ4YjSdSztu9)" alt="Project Logo" width="200" height="200">
+  <img src="C:\Users\DELL\Pictures\Screenshots" alt="Project Logo" width="200" height="200">
 </p>
 
 <h1 align="center">College assignment projects.</h1>
