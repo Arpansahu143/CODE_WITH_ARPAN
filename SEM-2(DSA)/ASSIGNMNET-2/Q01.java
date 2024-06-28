@@ -22,7 +22,7 @@ public class Q01 {
         Scanner sc = new Scanner(System.in);
 
         Person p1 = new Person();
-        p1.name = "Rohan";
+        p1.name = "arpan";
         p1.age = 20;
 
         Person p2 = new Person();
