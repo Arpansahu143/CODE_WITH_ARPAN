@@ -1,73 +1,78 @@
+// dm=deposit ammount
+// i= random index
+// tm=total ammount
+
 import java.util.*;
-class Bank
-{
-String bankName;
-int depositAmount;
-static int totalAmount;
-public Bank()
-{
-this.bankName = "";
-this.depositAmount = 0;
+
+class Bank {
+    String bankName;
+    int dm;
+    static int tm;
+
+    public Bank() {
+        this.bankName = "";
+        this.dm = 0;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public void setAmount(int dm) {
+        if (dm >= 1000) {
+            this.dm = dm;
+            tm += this.dm; // Accumulate total deposit amount
+        } else {
+            this.dm = 0;
+            System.out.println("Balance not credited due to low balance");
+        }
+    }
+
+    public void showData() {
+        System.out.println(this.bankName + "\t" + this.dm);
+    }
+
+    public static int bankDetails(Bank[] b) {
+        int minIndex = 0;
+        for (int j = 1; j < b.length; j++) {
+            if (b[j].dm < b[minIndex].dm) {
+                minIndex = j;
+            }
+        }
+        return minIndex;
+    }
 }
-public void setBankName(String bankName)
-{
-this.bankName = bankName;
+
+public class Ha3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("How many accounts do you want to create: ");
+        int n = sc.nextInt();
+        Bank[] b = new Bank[n];
+
+        for (int j = 0; j < n; j++) {
+            sc.nextLine(); // Consume newline left by nextInt()
+            System.out.println("Enter bank name and deposit amount (minimum 1000): ");
+            String name = sc.nextLine();
+            int amt = sc.nextInt();
+            b[j] = new Bank();
+            b[j].setBankName(name);
+            b[j].setAmount(amt);
+        }
+
+        System.out.println("*******Book information*******");
+        System.out.println("Bank name \t Amount ");
+        for (int j = 0; j < n; j++) {
+            b[j].showData();
+        }
+
+        System.out.println("Total amount deposited is " + Bank.tm);
+
+        int minIndex = Bank.bankDetails(b);
+        System.out.println("Bank details with minimum deposit amount:");
+        b[minIndex].showData();
+
+        sc.close(); // Close the scanner
+    }
 }
-public void setAmount(int depositAmount)
-{
-if(depositAmount>=1000)
-{
-this.depositAmount = depositAmount;
-}
-else
-{
-this.depositAmount = 0;
-System.out.println("Balance not credited due to low balance");
-}
-totalAmount += this.depositAmount;
-}
-public void showData()
-{
-System.out.println(this.bankName+"\t"+this.depositAmount);
-}
-public int bankDetails(Bank[] b)
-{
-int index = 0;
-for(int i = 1;i<b.length;i++)
-{
-if(b[index].depositAmount>b[i].depositAmount)
-index = i;
-}
-return index;
-}
-}
-class HA3
-{
-public static void main(String[] args)
-{
-Scanner sc = new Scanner(System.in);
-System.out.println("How many account you want to create: ");
-int n = sc.nextInt();
-Bank b[] = new Bank[n];
-for(int i = 0;i<n;i++)
-{
-sc.nextLine();
-System.out.println("Enter the bank name, and deposit amount(minimum amount 1000)");
-String name = sc.nextLine();
-int amount = sc.nextInt();
-b[i] = new Bank();
-b[i].setBankName(name);
-b[i].setAmount(amount);
-}
-System.out.println("*******Book information*******");
-System.out.println("Bank name \t Amount ");
-for(int i = 0;i<n;i++)
-{
-b[i].showData();
-}
-System.out.println("TotalAmount deposit by the person is"+Bank.totalAmount);
-int index = b[0].bankDetails(b);
-System.out.println("Bank details with minimum deposit amount ");
-b[index].showData();
-}
-}
+
