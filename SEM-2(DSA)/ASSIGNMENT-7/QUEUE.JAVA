@@ -1,4 +1,5 @@
-// Implementation of Queue using array (Static Data Structure)
+// 
+
 import java.util.*;
 class QUEUE
 {
